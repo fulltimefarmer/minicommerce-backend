@@ -1,4 +1,4 @@
-package org.max.commercebackend;
+package org.max.commerce;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

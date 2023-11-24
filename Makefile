@@ -8,6 +8,5 @@ infra-start:
 infra-cleanup:
 	docker compose -f docker-compose.yml down
 	rm -rf ./docker/postgres/data
-	rm -rf ./docker/redis/data
 
 infra-restart: infra-cleanup infra-start

@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: minicommerce
+
+server:
+  port: 8080
+
+logging:
+  level:
+      root: INFO
+  config: classpath:logback-spring.xml
+
+mybatis-flex:
+  datasource:
+    ds1:
+      url: jdbc:postgresql://localhost:5432/minicommerce
+      username: dbuser
+      password: 123qwe
+

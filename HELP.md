@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'org.max.commerce-backend' is invalid and this project uses 'org.max.commercebackend' instead.
+* The original package name 'org.max.commerce-backend' is invalid and this project uses 'org.max.commerce' instead.
 
 # Getting Started
 

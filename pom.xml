@@ -17,14 +17,30 @@
 		<java.version>17</java.version>
 
 		<!-- flyway -->
-        <flyway.url>jdbc:mysql://localhost:3326/commerce?useSSL=false&amp;allowPublicKeyRetrieval=true</flyway.url>
-        <flyway.user>dbuser</flyway.user>
-        <flyway.password>123qwe</flyway.password>
+		<flyway.driver>org.postgresql.Driver</flyway.driver>
+		<flyway.url>jdbc:postgresql://localhost:5432/minicommerce</flyway.url>
+		<flyway.user>dbuser</flyway.user>
+		<flyway.password>123qwe</flyway.password>
+		<flyway.locations>
+			filesystem:${project.basedir}/scripts/flyway/db/migration
+		</flyway.locations>
+		<flyway.defaultSchema>public</flyway.defaultSchema>
+		<flyway.schemas>
+			public,auth
+		</flyway.schemas>
 	</properties>
+
 	<dependencies>
+		<!-- web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- validation -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
 		<!-- DB -->
@@ -33,19 +49,20 @@
 			<artifactId>flyway-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>3.0.2</version>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.6.0</version>
 		</dependency>
 		<dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-			<version>8.0.23</version>
-            <scope>runtime</scope>
-        </dependency>
+			<groupId>com.mybatis-flex</groupId>
+			<artifactId>mybatis-flex-spring-boot-starter</artifactId>
+			<version>1.7.4</version>
+		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<groupId>com.mybatis-flex</groupId>
+			<artifactId>mybatis-flex-processor</artifactId>
+			<version>1.7.4</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- devtool -->
@@ -82,6 +99,19 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<!-- execute flyway migration with maven -->
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>7.15.0</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>42.6.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
