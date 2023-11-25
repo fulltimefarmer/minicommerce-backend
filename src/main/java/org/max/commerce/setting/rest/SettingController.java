@@ -3,6 +3,7 @@ package org.max.commerce.setting.rest;
 import lombok.RequiredArgsConstructor;
 import org.max.commerce.setting.dao.SettingRepository;
 import org.max.commerce.setting.entity.Setting;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,7 +22,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SettingController {
 
-    private final SettingRepository repository;
+	@Autowired
+    private SettingRepository repository;
 
     @GetMapping
     public ResponseEntity<List<Setting>> getAllSettings() {
@@ -40,13 +42,6 @@ public class SettingController {
     @PostMapping
     public ResponseEntity<Boolean> createSetting(@RequestBody Setting setting) {
         Boolean result = repository.save(setting);
-        return new ResponseEntity<>(result, HttpStatus.OK);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Boolean> updateSetting(@PathVariable Long id, @RequestBody Setting setting) {
-        setting.setId(id);
-        Boolean result = repository.updateById(setting);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

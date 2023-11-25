@@ -1,17 +1,17 @@
 package org.max.commerce.setting.entity;
 
-import com.mybatisflex.annotation.Column;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
+
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.RelationOneToMany;
 import com.mybatisflex.annotation.Table;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.List;
 
 @Getter
 @Setter
@@ -19,7 +19,7 @@ import java.util.List;
 @Table("setting")
 public class Setting implements Serializable {
 
-    @Id(keyType = KeyType.Auto)
+	@Id(keyType = KeyType.Auto)
     private Long id;
     private SettingTypeEnum settingType;
     private String settingName;
